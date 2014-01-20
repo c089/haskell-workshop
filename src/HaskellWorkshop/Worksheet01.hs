@@ -9,7 +9,7 @@ import Test.Hspec
 -- Write a function that returns the lesser of two Ints.
 --------------------------------------------------------------------------------
 myMin :: Int -> Int -> Int
-myMin = undefined
+myMin a b = if a < b then a else b
 
 myMinSpec :: Spec
 myMinSpec = do
@@ -26,7 +26,7 @@ myMinSpec = do
 -- the sides of a right triangle, such that the last element is the hypothenuse.
 --------------------------------------------------------------------------------
 isRightTriangle :: (Int, Int, Int) -> Bool
-isRightTriangle (x,y,z) = undefined
+isRightTriangle (x,y,z) = x*x + y*y == z*z
 
 isRightTriangleSpec :: Spec
 isRightTriangleSpec = do
@@ -46,7 +46,7 @@ isRightTriangleSpec = do
 -- any of those triples can form a right triangle
 --------------------------------------------------------------------------------
 anyRightTriangle :: [(Int,Int,Int)] -> Bool
-anyRightTriangle = undefined
+anyRightTriangle ts = any isRightTriangle ts
 
 anyRightTriangleSpec :: Spec
 anyRightTriangleSpec = do
@@ -70,7 +70,9 @@ anyRightTriangleSpec = do
 -- Return 'Nothing' if there is no last element
 --------------------------------------------------------------------------------
 myLast :: [a] -> Maybe a
-myLast = undefined
+myLast [] = Nothing
+myLast (x:[]) = Just x
+myLast (x:xs) = myLast xs
 
 myLastSpec :: Spec
 myLastSpec = do
@@ -89,7 +91,10 @@ myLastSpec = do
 -- Don't use the `!!` list index operator
 --------------------------------------------------------------------------------
 elementAt :: [a] -> Int -> Maybe a
-elementAt = undefined
+elementAt [] _      = Nothing
+elementAt (x:_) 1   = Just x
+elementAt (_:xs) k  = elementAt xs (k-1)
+
 
 elementAtSpec :: Spec
 elementAtSpec = do
@@ -105,7 +110,8 @@ elementAtSpec = do
 -- Find the number of elements of a list. Can you write a tail recursive version?
 --------------------------------------------------------------------------------
 myLength :: [a] -> Int
-myLength = undefined
+myLength []  = 0
+myLength (_:xs)  = 1 + myLength xs
 
 myLengthSpec :: Spec
 myLengthSpec = do
