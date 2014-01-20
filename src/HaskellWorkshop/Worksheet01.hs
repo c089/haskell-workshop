@@ -127,7 +127,8 @@ myLengthSpec = do
 -- Reverse a list.
 --------------------------------------------------------------------------------
 myReverse :: [a] -> [a]
-myReverse = undefined
+myReverse [] = []
+myReverse (x:xs) = myReverse xs ++ [x]
 
 myReverseSpec :: Spec
 myReverseSpec = do
