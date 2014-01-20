@@ -72,7 +72,7 @@ anyRightTriangleSpec = do
 myLast :: [a] -> Maybe a
 myLast [] = Nothing
 myLast (x:[]) = Just x
-myLast (x:xs) = myLast xs
+myLast (_:xs) = myLast xs
 
 myLastSpec :: Spec
 myLastSpec = do
